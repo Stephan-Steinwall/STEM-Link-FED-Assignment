@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.left-section {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1rem;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.cart-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.cart-count {
+    font-size: 1rem;
+    color: #333;
+}
+
+.cart-icon {
+    display: flex;
+    align-items: center;
+}
+
+.user-greeting {
+    font-size: 1rem;
+    color: #333;
+}
