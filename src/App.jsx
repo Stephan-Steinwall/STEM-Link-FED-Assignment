@@ -8,7 +8,7 @@ import  ProductCard  from "./ProductCard";
 function App() {
   return (
     <div>
-      <Navbar name="Thilina" />
+      <Navbar name= "" />
       <Hero />
       <ProductCards />
       

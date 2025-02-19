@@ -1,12 +1,27 @@
-import React from 'react';
+// Navbar.jsx
+import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Search, ShoppingCart } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-
+import SignInModal from '../src/components/modals/SignInModal';
+import SignUpModal from '../src/components/modals/SignUpModal';
 
 const Navbar = ({ name }) => {
+    const [showSignIn, setShowSignIn] = useState(false);
+    const [showSignUp, setShowSignUp] = useState(false);
+
+    const openSignIn = () => {
+        setShowSignUp(false);
+        setShowSignIn(true);
+    };
+
+    const openSignUp = () => {
+        setShowSignIn(false);
+        setShowSignUp(true);
+    };
+
     return (
-        <nav className="navbar flex justify-between items-center py-4 px-8 bg-white fixed top-0 w-full z-10">
+        <nav className="navbar flex justify-between items-center py-4 px-8 bg-white fixed top-0 w-full z-10 shadow-sm">
             {/* Left section */}
             <div className="left-section flex items-center gap-8 w-1/4">
                 <a href="/" className="logo text-2xl font-bold text-[#333] no-underline">Mebius</a>
@@ -32,42 +47,37 @@ const Navbar = ({ name }) => {
 
             {/* Right section */}
             <div className="right-section flex items-center gap-6 justify-end w-1/4">
-
-
                 <div className="cart-container flex items-center gap-2">
                     <span className="cart-count text-base text-[#333]">0</span>
                     <div className="cart-icon flex items-center">
-                        <ShoppingCart />
+                        <ShoppingCart className="cursor-pointer hover:text-gray-600" />
                     </div>
                 </div>
 
                 {name ? (
-                    <span className="user-greeting text-base text-[#333]">
-                        Hi, {name}
-                    </span>
+                    <div className="user-section flex items-center gap-4">
+                        <span className="user-greeting text-base text-[#333]">
+                            Hi, {name}
+                        </span>
+                        <Avatar className="cursor-pointer">
+                            <AvatarImage src="https://github.com/shadcn.png" />
+                            <AvatarFallback>CN</AvatarFallback>
+                        </Avatar>
+                    </div>
                 ) : (
                     <div className="auth-links flex items-center gap-4">
-                        <a
-                            href="/signin"
-                            className="text-base text-[#333] hover:text-[#666] no-underline"
-                        >
-                            Sign In
-                        </a>
-                        <a
-                            href="/signup"
-                            className="text-base bg-[#333] text-white px-4 py-2 rounded-md hover:bg-[#444] no-underline transition-colors"
-                        >
-                            Sign Up
-                        </a>
+                        <SignInModal 
+                            showDialog={showSignIn}
+                            setShowDialog={setShowSignIn}
+                            onSignUpClick={openSignUp}
+                        />
+                        <SignUpModal 
+                            showDialog={showSignUp}
+                            setShowDialog={setShowSignUp}
+                            onSignInClick={openSignIn}
+                        />
                     </div>
                 )}
-
-                <Avatar>
-                    <AvatarImage src="https://github.com/shadcn.png" />
-                    <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
-
-
             </div>
         </nav>
     )
